@@ -2,13 +2,8 @@
 
 print("Content-Type: text/html")
 print()
-import cgi, os
- 
-files = os.listdir('data')
-listStr = ''
-for item in files:
-    listStr = listStr + '<li><a href="ex_index.py?id={name}">{name}</a></li>'.format(name=item)
- 
+import cgi, os, view
+  
 form = cgi.FieldStorage()
 if 'id' in form:
     pageId = form["id"].value
@@ -35,4 +30,4 @@ print('''<!doctype html>
   </form>
 </body>
 </html>
-'''.format(title=pageId, desc=description, listStr=listStr))
+'''.format(title=pageId, desc=description, listStr=view.getList()))
